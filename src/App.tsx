@@ -5,15 +5,22 @@ function App() {
   const [inputTodo, setInputTodo] = useState("")
   const [checkedItems, setCheckedItems] = useState([])
   const [todos, setTodos] = useState([])
+  const [id,setId] = useState(0)
 
   const onChangeTodo = (e)=>{
     setInputTodo(e.target.value)
   }
   const onClickAdd = ()=>{
     if (!inputTodo) return;
-    const newTodos = [...todos, inputTodo]
+    const newTodo = {
+      id:id,
+      title:inputTodo,
+      inEdit:false
+    }
+    const newTodos = [...todos, newTodo]
     setTodos(newTodos)
     setInputTodo('')
+    setId((id) => id + 1)
 
   }
 
@@ -51,9 +58,9 @@ function App() {
       <button onClick={onClickAdd}>保存</button>
       {
         todos.map((todo,index)=>(
-          <div key={todo} className="list-row">
+          <div key={todo.id} className="list-row">
             <input type="checkbox" onClick={()=>{onClickCheck(index)}} />
-            <p>{todo}</p>
+            <p>{todo.title}</p>
             <button>編集</button>
             <button onClick={()=>{onClickDelete(index)}}>削除</button>
           </div>
