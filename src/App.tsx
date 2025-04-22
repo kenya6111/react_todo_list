@@ -3,9 +3,12 @@ import './App.css'
 
 function App() {
   const [inputTodo, setInputTodo] = useState("")
+  const [editTodo, setEditTodo] = useState("")
   const [checkedItems, setCheckedItems] = useState([])
   const [todos, setTodos] = useState([])
   const [id,setId] = useState(0)
+  // const [isEdit,setIsEdit] = useState(false)
+
 
   const onChangeTodo = (e)=>{
     setInputTodo(e.target.value)
@@ -15,7 +18,7 @@ function App() {
     const newTodo = {
       id:id,
       title:inputTodo,
-      inEdit:false
+      isEdit:false,
     }
     const newTodos = [...todos, newTodo]
     setTodos(newTodos)
@@ -49,6 +52,27 @@ function App() {
     setCheckedItems(newCheckedItems)
   }
 
+  const onClickEdit =(index)=>{
+    const currentTodos = [...todos]
+    const currentTitle = currentTodos[index].title
+    currentTodos[index].isEdit = !currentTodos[index].isEdit
+    setTodos(currentTodos)
+    setEditTodo(currentTitle)
+
+  }
+  const onChangeEdit =(e)=>{
+    const editText = e.target.value
+    setEditTodo(editText)
+    console.log(editTodo)
+  }
+  const onClickEditSave =(index)=>{
+    console.log(index)
+    const currentTodos = [...todos]
+    currentTodos[index].title = editTodo
+    currentTodos[index].isEdit = !currentTodos[index].isEdit
+    setTodos(currentTodos)
+  }
+
   return (
     <>
       <p>全てのタスク:{todos.length}</p>
@@ -60,8 +84,8 @@ function App() {
         todos.map((todo,index)=>(
           <div key={todo.id} className="list-row">
             <input type="checkbox" onClick={()=>{onClickCheck(index)}} />
-            <p>{todo.title}</p>
-            <button>編集</button>
+            {<div>{ todo.isEdit ? <input onChange={onChangeEdit} value={editTodo}/> : <p>{todo.title}</p> }</div> }
+            {<div>{ todo.isEdit ? <button onClick={()=>{onClickEditSave(index)}}>保存</button> : <button onClick={()=>{onClickEdit(index)}}>編集</button> }</div> }
             <button onClick={()=>{onClickDelete(index)}}>削除</button>
           </div>
         ))
