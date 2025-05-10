@@ -1,18 +1,14 @@
 #root {
-  max-width: 1280px;
+  /* max-width: 1280px; */
   margin: 0 auto;
-  padding: 2rem;
+  /* padding: 2rem; */
   text-align: center;
 }
-
-.card {
-  padding: 2em;
+body {
+  margin: 0;
+  display: block;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
 }
 
-.read-the-docs {
-  color: #888;
-}
-
-.list-row{
-  display:flex;
-}

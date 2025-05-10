@@ -1,9 +1,8 @@
 import { useState } from 'react'
 import '../../App.css'
-import { PrimaryButton } from '../atoms/button/PrimaryButton'
-import { Input } from '../atoms/input/Input'
-import { Edit } from '../atoms/input/Edit'
-import { Check } from '../atoms/input/Check'
+import { Task } from '../molecules/Task'
+import { TaskState } from '../organisms/TaskState'
+import { SearchInput } from '../molecules/SearchInput'
 
 function App() {
   const [inputTodo, setInputTodo] = useState("")
@@ -78,21 +77,9 @@ function App() {
 
   return (
     <>
-      <p>全てのタスク:{todos.length}</p>
-      <p>完了済み:{checkedItems.length}</p>
-      <p>未完了:{todos.length - checkedItems.length}</p>
-      <Input value={inputTodo} onChange={onChangeTodo} placeholder="タスクを入力"/>
-      <PrimaryButton onClick={onClickAdd}>保存</PrimaryButton>
-      {
-        todos.map((todo,index)=>(
-          <div key={todo.id} className="list-row">
-            <Check type="checkbox" onClick={( )=>{onClickCheck(index)}} />
-            {<div>{ todo.isEdit ? <Edit value={editTodo} onChange={onChangeEdit} placeholder="タスクを変更"/> : <p>{todo.title}</p> }</div> }
-            {<div>{ todo.isEdit ? <PrimaryButton onClick={()=>{onClickEditSave(index)}}>保存</PrimaryButton> : <PrimaryButton onClick={()=>{onClickEdit(index)}}>編集</PrimaryButton> }</div> }
-            <PrimaryButton onClick={()=>{onClickDelete(index)}}>削除</PrimaryButton>
-          </div>
-        ))
-      }
+      <TaskState todos={todos} checkedItems={checkedItems}/>
+      <SearchInput inputTodo={inputTodo} onChangeTodo={onChangeTodo} onClickAdd={onClickAdd} placeholder="タスクを入力"/>
+      <Task todos={todos} onClickCheck={onClickCheck} onChangeEdit={onChangeEdit} onClickEditSave={onClickEditSave} onClickEdit={onClickEdit} onClickDelete={onClickDelete}/>
     </>
   )
 }

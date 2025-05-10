@@ -5,5 +5,5 @@ export const Check = (props) => {
 };
 
 const SInput = styled.input`
-
+  
 `;
