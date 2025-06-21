@@ -1,7 +1,7 @@
 import { PrimaryButton } from "../atoms/button/PrimaryButton";
 import { Input } from "../atoms/input/Input";
 export const SearchInput = (props) => {
-  const { inputTodo, onChangeTodo, placeholder, onClickAdd } = props;
+  const { inputTodo, onChangeTodo, placeholder, onClickSave } = props;
   return (
     <>
       <Input
@@ -9,7 +9,7 @@ export const SearchInput = (props) => {
         onChange={onChangeTodo}
         placeholder={placeholder}
       />
-      <PrimaryButton onClick={onClickAdd}>保存</PrimaryButton>
+      <PrimaryButton onClick={onClickSave}>保存</PrimaryButton>
     </>
   );
 };

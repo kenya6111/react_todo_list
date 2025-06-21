@@ -14,7 +14,8 @@ function App() {
   const onChangeTodo = (e) => {
     setInputTodo(e.target.value);
   };
-  const onClickAdd = () => {
+
+  const onClickSave = () => {
     if (!inputTodo) return;
     const newTodo = {
       id: uuidv4(),
@@ -78,7 +79,7 @@ function App() {
       <SearchInput
         inputTodo={inputTodo}
         onChangeTodo={onChangeTodo}
-        onClickAdd={onClickAdd}
+        onClickSave={onClickSave}
         placeholder="タスクを入力"
       />
       <Task
