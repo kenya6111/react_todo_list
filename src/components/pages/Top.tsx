@@ -43,10 +43,11 @@ function App() {
     );
   };
 
-  const onClickEdit = (index) => {
+  const onClickEdit = (id) => {
     const currentTodos = [...todos];
-    const currentTitle = currentTodos[index].title;
-    currentTodos[index].isEdit = !currentTodos[index].isEdit;
+    const targetTodo = todos.find((t) => t.id === id);
+    const currentTitle = targetTodo.title;
+    targetTodo.isEdit = true;
     setTodos(currentTodos);
     setEditTodo(currentTitle);
   };
@@ -56,10 +57,11 @@ function App() {
     setEditTodo(editText);
   };
 
-  const onClickEditSave = (index) => {
+  const onClickEditSave = (id) => {
     const currentTodos = [...todos];
-    currentTodos[index].title = editTodo;
-    currentTodos[index].isEdit = !currentTodos[index].isEdit;
+    const targetTodo = todos.find((t) => t.id === id);
+    targetTodo.title = editTodo;
+    targetTodo.isEdit = false;
     setTodos(currentTodos);
   };
 

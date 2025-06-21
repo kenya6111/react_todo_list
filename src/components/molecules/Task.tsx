@@ -12,7 +12,7 @@ export const Task = (props) => {
     onClickDelete,
     editTodo,
   } = props;
-  return todos.map((todo, index) => (
+  return todos.map((todo) => (
     <STask key={todo.id}>
       <Check
         type="checkbox"
@@ -32,7 +32,7 @@ export const Task = (props) => {
       {todo.isEdit ? (
         <PrimaryButton
           onClick={() => {
-            onClickEditSave(index);
+            onClickEditSave(todo.id);
           }}
         >
           保存
@@ -40,7 +40,7 @@ export const Task = (props) => {
       ) : (
         <PrimaryButton
           onClick={() => {
-            onClickEdit(index);
+            onClickEdit(todo.id);
           }}
         >
           編集
