@@ -8,7 +8,7 @@ import { v4 as uuidv4 } from "uuid";
 function App() {
   const [inputTodo, setInputTodo] = useState("");
   const [editTodo, setEditTodo] = useState("");
-  const [checkedItems, setCheckedItems] = useState([]);
+  const [checkedTasks, setCheckedTasks] = useState([]);
   const [todos, setTodos] = useState([]);
 
   const onChangeTodo = (e) => {
@@ -32,25 +32,25 @@ function App() {
     newTodos.splice(index, 1);
     setTodos(newTodos);
 
-    let newCheckedItems = [...checkedItems];
+    let newCheckedItems = [...checkedTasks];
     const targetTodo = todos[index];
-    if (checkedItems.includes(targetTodo)) {
+    if (checkedTasks.includes(targetTodo)) {
       newCheckedItems = newCheckedItems.filter((e) => e !== targetTodo);
     }
-    setCheckedItems(newCheckedItems);
+    setCheckedTasks(newCheckedItems);
   };
 
   const onClickCheck = (index) => {
     const targetTodo = todos[index];
-    let newCheckedItems = [...checkedItems];
+    let newCheckedItems = [...checkedTasks];
 
-    if (checkedItems.includes(targetTodo)) {
+    if (checkedTasks.includes(targetTodo)) {
       newCheckedItems = newCheckedItems.filter((e) => e !== targetTodo);
-      setCheckedItems(newCheckedItems);
+      setCheckedTasks(newCheckedItems);
       return;
     }
     newCheckedItems.push(targetTodo);
-    setCheckedItems(newCheckedItems);
+    setCheckedTasks(newCheckedItems);
   };
 
   const onClickEdit = (index) => {
@@ -75,7 +75,7 @@ function App() {
 
   return (
     <>
-      <TaskState todos={todos} checkedItems={checkedItems} />
+      <TaskState todos={todos} checkedTasks={checkedTasks} />
       <SearchInput
         inputTodo={inputTodo}
         onChangeTodo={onChangeTodo}

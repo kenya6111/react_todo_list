@@ -1,10 +1,10 @@
 export const TaskState = (props) => {
-  const { todos, checkedItems } = props;
+  const { todos, checkedTasks } = props;
   return (
     <>
       <p>全てのタスク:{todos.length}</p>
-      <p>完了済み:{checkedItems.length}</p>
-      <p>未完了:{todos.length - checkedItems.length}</p>
+      <p>完了済み:{checkedTasks.length}</p>
+      <p>未完了:{todos.length - checkedTasks.length}</p>
     </>
   );
 };
