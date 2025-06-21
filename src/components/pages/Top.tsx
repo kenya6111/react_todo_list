@@ -80,7 +80,6 @@ function App() {
         inputTodo={inputTodo}
         onChangeTodo={onChangeTodo}
         onClickSave={onClickSave}
-        placeholder="タスクを入力"
       />
       <Task
         todos={todos}
