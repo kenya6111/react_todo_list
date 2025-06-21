@@ -1,13 +1,11 @@
-
-import Top from './components/pages/Top'
-
+import Top from "./components/pages/Top";
 
 function App() {
   return (
     <>
-      <Top/>
+      <Top />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

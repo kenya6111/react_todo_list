@@ -1,5 +1,5 @@
 export const TaskState = (props) => {
-  const { todos,checkedItems} = props;
+  const { todos, checkedItems } = props;
   return (
     <>
       <p>全てのタスク:{todos.length}</p>
@@ -8,5 +8,3 @@ export const TaskState = (props) => {
     </>
   );
 };
-
-

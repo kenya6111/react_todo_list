@@ -1,6 +1,6 @@
 import styled from "styled-components";
 export const Input = (props) => {
-  const { value,onChange, placeholder } = props;
+  const { value, onChange, placeholder } = props;
   return <SInput value={value} onChange={onChange} placeholder={placeholder} />;
 };
 
