@@ -1,7 +1,14 @@
 import styled from "styled-components";
 export const Edit = (props) => {
-  const { type, onChange, placeholder } = props;
-  return <SInput type={type} onChange={onChange} placeholder={placeholder} />;
+  const { type, onChange, placeholder, value } = props;
+  return (
+    <SInput
+      type={type}
+      onChange={onChange}
+      placeholder={placeholder}
+      value={value}
+    />
+  );
 };
 
 const SInput = styled.input``;
