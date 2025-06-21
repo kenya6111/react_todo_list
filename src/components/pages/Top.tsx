@@ -32,25 +32,19 @@ function App() {
     newTodos.splice(index, 1);
     setTodos(newTodos);
 
-    let newCheckedItems = [...checkedTasks];
     const targetTodo = todos[index];
-    if (checkedTasks.includes(targetTodo)) {
-      newCheckedItems = newCheckedItems.filter((e) => e !== targetTodo);
-    }
-    setCheckedTasks(newCheckedItems);
+    setCheckedTasks((prev) =>
+      prev.includes(targetTodo) ? prev.filter((p) => p !== targetTodo) : prev
+    );
   };
 
   const onClickCheck = (index) => {
     const targetTodo = todos[index];
-    let newCheckedItems = [...checkedTasks];
-
-    if (checkedTasks.includes(targetTodo)) {
-      newCheckedItems = newCheckedItems.filter((e) => e !== targetTodo);
-      setCheckedTasks(newCheckedItems);
-      return;
-    }
-    newCheckedItems.push(targetTodo);
-    setCheckedTasks(newCheckedItems);
+    setCheckedTasks((prev) =>
+      prev.includes(targetTodo)
+        ? prev.filter((t) => t !== targetTodo)
+        : [...prev, targetTodo]
+    );
   };
 
   const onClickEdit = (index) => {
