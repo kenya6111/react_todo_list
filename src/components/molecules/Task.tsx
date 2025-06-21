@@ -17,7 +17,7 @@ export const Task = (props) => {
       <Check
         type="checkbox"
         onClick={() => {
-          onClickCheck(index);
+          onClickCheck(todo.id);
         }}
       />
       {todo.isEdit ? (
@@ -48,7 +48,7 @@ export const Task = (props) => {
       )}
       <PrimaryButton
         onClick={() => {
-          onClickDelete(index);
+          onClickDelete(todo.id);
         }}
       >
         削除

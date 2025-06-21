@@ -27,23 +27,19 @@ function App() {
     setInputTodo("");
   };
 
-  const onClickDelete = (index) => {
-    const newTodos = [...todos];
-    newTodos.splice(index, 1);
-    setTodos(newTodos);
+  const onClickDelete = (id) => {
+    let newTodos = [...todos];
+    newTodos = newTodos.filter((todo) => todo.id !== id);
 
-    const targetTodo = todos[index];
+    setTodos(newTodos);
     setCheckedTasks((prev) =>
-      prev.includes(targetTodo) ? prev.filter((p) => p !== targetTodo) : prev
+      prev.includes(id) ? prev.filter((p) => p !== id) : prev
     );
   };
 
-  const onClickCheck = (index) => {
-    const targetTodo = todos[index];
+  const onClickCheck = (id) => {
     setCheckedTasks((prev) =>
-      prev.includes(targetTodo)
-        ? prev.filter((t) => t !== targetTodo)
-        : [...prev, targetTodo]
+      prev.includes(id) ? prev.filter((t) => t !== id) : [...prev, id]
     );
   };
 
