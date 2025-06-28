@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "../../App.css";
-import { Task } from "../molecules/Task";
+import { Task } from "../organisms/Task";
 import { TaskState } from "../organisms/TaskState";
 import { SearchInput } from "../molecules/SearchInput";
 import { v4 as uuidv4 } from "uuid";
