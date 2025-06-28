@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import { Check } from "../atoms/input/Check";
 import { PrimaryButton } from "../atoms/button/PrimaryButton";
-import { Edit } from "../atoms/input/Edit";
+import { Input } from "../atoms/input/Input";
 export const Task = (props) => {
   const {
     todos,
@@ -14,14 +13,14 @@ export const Task = (props) => {
   } = props;
   return todos.map((todo) => (
     <STask key={todo.id}>
-      <Check
+      <Input
         type="checkbox"
         onClick={() => {
           onClickCheck(todo.id);
         }}
       />
       {todo.isEdit ? (
-        <Edit
+        <Input
           value={editTodo}
           onChange={onChangeEdit}
           placeholder="タスクを変更"
