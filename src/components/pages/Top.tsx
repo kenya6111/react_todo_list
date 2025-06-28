@@ -28,8 +28,7 @@ function App() {
   };
 
   const onClickDelete = (id) => {
-    let newTodos = [...todos];
-    newTodos = newTodos.filter((todo) => todo.id !== id);
+    const newTodos = [...todos].filter((todo) => todo.id !== id);
 
     setTodos(newTodos);
     setCheckedTasks((prev) =>
