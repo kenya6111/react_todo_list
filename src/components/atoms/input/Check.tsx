@@ -1,7 +1,6 @@
 import styled from "styled-components";
 export const Check = (props) => {
-  const { type, onClick, placeholder } = props;
-  return <SInput type={type} onClick={onClick} placeholder={placeholder} />;
+  return <SInput {...props} />;
 };
 
 const SInput = styled.input``;
