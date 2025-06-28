@@ -1,8 +1,8 @@
 export const TaskState = (props) => {
-  const { todos, checkedTasks } = props;
+  const { todos } = props;
   const allTodoLength = todos.length;
-  const checkedTodoLength = checkedTasks.length;
-  const notCheckedTodoLength = todos.length - checkedTasks.length;
+  const checkedTodoLength = todos.filter((todo) => todo.isChecked).length;
+  const notCheckedTodoLength = allTodoLength - checkedTodoLength;
 
   return (
     <>

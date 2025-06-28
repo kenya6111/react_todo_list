@@ -8,7 +8,6 @@ import { v4 as uuidv4 } from "uuid";
 function App() {
   const [inputTodo, setInputTodo] = useState("");
   const [editTodo, setEditTodo] = useState("");
-  const [checkedTasks, setCheckedTasks] = useState([]);
   const [todos, setTodos] = useState([]);
 
   const onChangeTodo = (e) => {
@@ -21,6 +20,7 @@ function App() {
       id: uuidv4(),
       title: inputTodo,
       isEdit: false,
+      isChecked: false,
     };
     const newTodos = [...todos, newTodo];
     setTodos(newTodos);
@@ -29,17 +29,17 @@ function App() {
 
   const onClickDelete = (id) => {
     const newTodos = [...todos].filter((todo) => todo.id !== id);
-
     setTodos(newTodos);
-    setCheckedTasks((prev) =>
-      prev.includes(id) ? prev.filter((p) => p !== id) : prev
-    );
   };
 
   const onClickCheck = (id) => {
-    setCheckedTasks((prev) =>
-      prev.includes(id) ? prev.filter((t) => t !== id) : [...prev, id]
-    );
+    const newTodos = todos.map((todo) => {
+      if (todo.id === id) {
+        todo.isChecked = !todo.isChecked;
+      }
+      return todo;
+    });
+    setTodos(newTodos);
   };
 
   const onClickEdit = (id) => {
@@ -66,7 +66,7 @@ function App() {
 
   return (
     <>
-      <TaskState todos={todos} checkedTasks={checkedTasks} />
+      <TaskState todos={todos} />
       <SearchInput
         inputTodo={inputTodo}
         onChangeTodo={onChangeTodo}
