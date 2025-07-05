@@ -1,17 +1,33 @@
 import styled from "styled-components";
 import { PrimaryButton } from "../atoms/button/PrimaryButton";
 import { Input } from "../atoms/input/Input";
+import { useState } from "react";
 export const Task = (props) => {
-  const {
-    todos,
-    onClickCheck,
-    onChangeEdit,
-    onClickEdit,
-    onClickEditSave,
-    onClickDelete,
-    editTodo,
-  } = props;
-  return todos.map((todo) => (
+  const { todos, todo, setTodos, onClickCheck, onClickDelete } = props;
+
+  const [editTodo, setEditTodo] = useState("");
+
+  const onClickEdit = () => {
+    const currentTodos = [...todos];
+    const targetTodo = todos.find((t) => t.id === todo.id);
+    targetTodo.isEdit = true;
+    setEditTodo(targetTodo.title);
+    setTodos(currentTodos);
+  };
+
+  const onChangeEdit = (e) => {
+    setEditTodo(e.target.value);
+  };
+
+  const onClickEditSave = () => {
+    const currentTodos = [...todos];
+    const targetTodo = todos.find((t) => t.id === todo.id);
+    targetTodo.isEdit = false;
+    targetTodo.title = editTodo;
+    setTodos(currentTodos);
+  };
+
+  return (
     <STask key={todo.id}>
       <Input
         type="checkbox"
@@ -31,7 +47,7 @@ export const Task = (props) => {
       {todo.isEdit ? (
         <PrimaryButton
           onClick={() => {
-            onClickEditSave(todo.id);
+            onClickEditSave();
           }}
         >
           保存
@@ -39,7 +55,7 @@ export const Task = (props) => {
       ) : (
         <PrimaryButton
           onClick={() => {
-            onClickEdit(todo.id);
+            onClickEdit();
           }}
         >
           編集
@@ -53,7 +69,7 @@ export const Task = (props) => {
         削除
       </PrimaryButton>
     </STask>
-  ));
+  );
 };
 
 const STask = styled.div`

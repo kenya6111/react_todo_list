@@ -1,13 +1,12 @@
 import { useState } from "react";
 import "../../App.css";
-import { Task } from "../organisms/Task";
+import { Tasks } from "../organisms/Tasks";
 import { TaskState } from "../organisms/TaskState";
 import { SearchInput } from "../molecules/SearchInput";
 import { v4 as uuidv4 } from "uuid";
 
 function App() {
   const [inputTodo, setInputTodo] = useState("");
-  const [editTodo, setEditTodo] = useState("");
   const [todos, setTodos] = useState([]);
 
   const onChangeTodo = (e) => {
@@ -42,28 +41,6 @@ function App() {
     setTodos(newTodos);
   };
 
-  const onClickEdit = (id) => {
-    const currentTodos = [...todos];
-    const targetTodo = todos.find((t) => t.id === id);
-    const currentTitle = targetTodo.title;
-    targetTodo.isEdit = true;
-    setTodos(currentTodos);
-    setEditTodo(currentTitle);
-  };
-
-  const onChangeEdit = (e) => {
-    const editText = e.target.value;
-    setEditTodo(editText);
-  };
-
-  const onClickEditSave = (id) => {
-    const currentTodos = [...todos];
-    const targetTodo = todos.find((t) => t.id === id);
-    targetTodo.title = editTodo;
-    targetTodo.isEdit = false;
-    setTodos(currentTodos);
-  };
-
   return (
     <>
       <TaskState todos={todos} />
@@ -72,14 +49,11 @@ function App() {
         onChangeTodo={onChangeTodo}
         onClickSave={onClickSave}
       />
-      <Task
+      <Tasks
         todos={todos}
+        setTodos={setTodos}
         onClickCheck={onClickCheck}
-        onChangeEdit={onChangeEdit}
-        onClickEditSave={onClickEditSave}
-        onClickEdit={onClickEdit}
         onClickDelete={onClickDelete}
-        editTodo={editTodo}
       />
     </>
   );
