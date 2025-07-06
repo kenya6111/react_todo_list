@@ -1,4 +1,4 @@
-import { Task } from "../molecules/Task";
+import { Task } from "./Task";
 export const Tasks = (props) => {
   const { todos, setTodos, onClickCheck, onClickDelete } = props;
 
